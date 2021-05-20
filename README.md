@@ -1,2 +1,2 @@
-# LIOJ
+# C
  C training
