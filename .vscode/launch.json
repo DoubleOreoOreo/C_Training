@@ -1,0 +1,28 @@
+//目的：偵錯相關設定
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "(gdb) Launch", // 配置名稱，將會在啟動配置的下拉選單中顯示 
+        "type": "cppdbg", // 配置型別，這裡只能為cppdbg 
+        "request": "launch", // 請求配置型別，可以為launch（啟動）或attach（附加）
+        "program": "${fileDirname}/${fileBasenameNoExtension}.exe",  // 將要進行除錯的程式的路徑 
+        "args": [],  // 程式除錯時傳遞給程式的命令列引數，一般設為空即可
+        "stopAtEntry": true,  // 設為true時程式將暫停在程式入口處，一般設定為false 
+        "cwd": "${workspaceFolder}", // 除錯程式時的工作目錄，一般為${workspaceRoot}即程式碼所在目錄 
+        "environment": [],
+        "externalConsole": true,  // 除錯時是否顯示控制檯視窗，一般設定為true顯示控制檯
+        "internalConsoleOptions": "neverOpen", 
+        "MIMode": "gdb",
+        "miDebuggerPath": "gdb.exe", // miDebugger的路徑，注意這裡要與MinGw的路徑對應
+        "setupCommands": [ 
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": false
+          }
+        ],
+        "preLaunchTask": "Compile" // 除錯會話開始前執行的任務，一般為編譯程式，c++為g++, c為gcc
+      }
+    ]
+  }
