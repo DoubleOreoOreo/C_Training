@@ -2,29 +2,31 @@
 #include<stdlib.h>
 #include<string.h>
 
+typedef struct STUdata STUdata;
+struct STUdata
+{
+    char Name[21];
+    int score;
+};
+
 int main()
 {
-    int M, i, score, MAX=0;
-    char* Name;
-    int j=0;
+    int M, i, MAX=0;
     scanf("%d", &M);
-    int ans[M];
-
-    Name = (char*)malloc(M * sizeof(char));
+    STUdata student[M];
 
     for (i = 0; i < M; i++)
     {
-        scanf("%s%d", Name, &score);
-        //printf("%s | %d\n", Name, score);
-        if(score>=MAX)
-        {
-            MAX = score;
-        }
+        scanf("%s%d", student[i].Name, &student[i].score);
+        if(student[i].score>=MAX)
+            MAX = student[i].score;
     }
 
-    printf("%s | %d\n", Name, MAX);
-    printf("%s | %d\n", Name+1, MAX);
-
-    free(Name);
+    for (i = 0; i < M; i++)
+    {
+        if(student[i].score == MAX)
+            printf("%s\n", student[i].Name);
+    }
+    
     return 0;
 }
