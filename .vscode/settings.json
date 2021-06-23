@@ -11,6 +11,7 @@
     "code-runner.saveFileBeforeRun": true, 
     "code-runner.preserveFocus": true, 
     "code-runner.clearPreviousOutput": false, 
+    "code-runner.ignoreSelection": true, 
     "C_Cpp.clang_format_sortIncludes": true,
     "C_Cpp.intelliSenseEngine": "Default", 
     "C_Cpp.errorSquiggles": "Disabled", 
