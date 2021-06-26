@@ -21,7 +21,7 @@ ListNode* creatNode(int x)
 void printList()
 {
     if(head == NULL){
-        printf("Linked list is empty");
+        printf("Linked list is empty\n");
     }else{
         ListNode *current = head;
         printf("Linked list: ");
@@ -54,7 +54,38 @@ void push_back(int x)
 
 void push_front(int x)
 {
-    
+    ListNode* new_node = creatNode(x);
+    if(head == NULL){
+        head = new_node;
+    }else{
+        new_node->next = head;
+        head = new_node;
+    }
+}
+
+void delete(int x)
+{
+    if(head == NULL){
+        printf("Linked list is empty\n");
+    }else{
+        ListNode* current = head;
+        ListNode* previous = NULL;
+        
+        while(current != NULL && current->val != x){
+            previous = current;
+            current = current->next;
+        }
+
+        if(current == NULL){
+            printf("There is no %d in linked list\n", x);
+        }else if(current == head){
+            head = current->next;
+            free(current);
+        }else{
+            previous->next = current->next;
+            free(current);
+        }
+    }
 }
 
 void insertAfterList(struct ListNode* ptr, int x)
@@ -75,11 +106,6 @@ void insertBeforeheadList(struct ListNode** head, int x)
 
     //概念同Call by address的SWAP
     //如果要Call by value就使用return回傳
-}
-
-void deleteList(struct ListNode* n, int x)
-{
-    //待補
 }
 
 int main()
@@ -104,13 +130,17 @@ int main()
                 push_back(val);
                 break;
             case 2: //Push one node at the front of the linked list
-
+                printf("Enter node value: ");
+                scanf("%d", &val);
+                push_front(val);
                 break;
             case 3: //Insert
 
                 break;
             case 4: //Delete
-
+                printf("Enter node value: ");
+                scanf("%d", &val);
+                delete(val);
                 break;
             case 5: //Print
                 printList();
@@ -122,13 +152,7 @@ int main()
                 break;
         }
     }
-    //second = creatNode(1);
-    //third = creatNode(2);
-
-    //head->next = second;
-    //second->next = third;
-    //insertBeforeheadList(&head, 11);
     
-   free(head);
+    free(head);
     return 0;
 }
