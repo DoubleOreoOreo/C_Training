@@ -88,6 +88,16 @@ void delete(int x)
     }
 }
 
+void clear()
+{
+    while(head != NULL){
+        ListNode *current = head;
+        head = current->next;
+        free(current);
+    }
+    printf("All nodes are removed!\n");
+}
+
 void insertAfterList(struct ListNode* ptr, int x)
 {
     ListNode* new_node = creatNode(x);
@@ -117,8 +127,9 @@ int main()
     printf("(2) Push front\n");
     printf("(3) Insert x (Node: head -> x)\n");
     printf("(4) Delete\n");
-    printf("(5) Print this link\n");
-    printf("(6) Quit\n");
+    printf("(5) Clear\n");
+    printf("(6) Print this link\n");
+    printf("(7) Quit\n");
     while (flag){
         printf("Enter your option: ");
         scanf("%d", &option);
@@ -142,10 +153,13 @@ int main()
                 scanf("%d", &val);
                 delete(val);
                 break;
-            case 5: //Print
+            case 5: //Clear
+                clear();
+                break;
+            case 6: //Print
                 printList();
                 break;
-            case 6: //Exit
+            case 7: //Exit
                 flag = 0;
                 break;
             default:
