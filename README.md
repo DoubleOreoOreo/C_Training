@@ -1,2 +1,2 @@
-# C
- C training
+# C/C++
+ C/C++ training
