@@ -98,24 +98,42 @@ void clear()
     printf("All nodes are removed!\n");
 }
 
-void insertAfterList(struct ListNode* ptr, int x)
+void insert(int x, int y)
 {
-    ListNode* new_node = creatNode(x);
-
-    new_node->next = ptr->next;
-    ptr->next = new_node;
+    /*ListNode *new_node = creatNode(x);
+    
+    if (head == NULL){
+        printf("Insertion fail, Linked list is empty!\n");
+    }else{
+        ListNode *current = head;
+        
+        while(current->next != NULL){
+            current = current->next;
+        }
+        current->next = new_node;
+        printf("Success!\n");
+    }*/
 }
 
-void insertBeforeheadList(struct ListNode** head, int x)
+void reverse()
 {
-    ListNode* new_node;
-    new_node = creatNode(x);
+    if(head == NULL || head->next == NULL)
+        printf("Linked list is empty or Linked list only has one node!");
+    else{
+        ListNode* previous = NULL;
+        ListNode* current = head;
+        ListNode* following = head->next;
 
-    new_node->next = *head;
-    *head = new_node;
-
-    //概念同Call by address的SWAP
-    //如果要Call by value就使用return回傳
+        while(following != NULL)
+        {
+            current->next = previous;
+            previous = current;
+            current = following;
+            following = following->next;
+        }
+        current->next = previous;
+        head = current;
+    }
 }
 
 int main()
@@ -126,10 +144,12 @@ int main()
     printf("(1) Push back\n");
     printf("(2) Push front\n");
     printf("(3) Insert x (Node: head -> x)\n");
-    printf("(4) Delete\n");
-    printf("(5) Clear\n");
-    printf("(6) Print this link\n");
-    printf("(7) Quit\n");
+    printf("(4) Reverse\n");
+    printf("(5) Delete\n");
+    printf("(6) Clear\n");
+    printf("(7) Print this link\n");
+    printf("(8) Quit\n");
+
     while (flag){
         printf("Enter your option: ");
         scanf("%d", &option);
@@ -148,18 +168,21 @@ int main()
             case 3: //Insert
 
                 break;
-            case 4: //Delete
+            case 4: //Reverse
+                reverse();
+                break;
+            case 5: //Delete
                 printf("Enter node value: ");
                 scanf("%d", &val);
                 delete(val);
                 break;
-            case 5: //Clear
+            case 6: //Clear
                 clear();
                 break;
-            case 6: //Print
+            case 7: //Print
                 printList();
                 break;
-            case 7: //Exit
+            case 8: //Exit
                 flag = 0;
                 break;
             default:
