@@ -32,8 +32,7 @@ int nthUglyNumber(int n){
 
 int main()
 {
-    
-    printf("ans = %d\n", nthUglyNumber(11));
+    //printf("ans = %d\n", nthUglyNumber(100));
     /*int* array = (int*)malloc(sizeof(int));
     array[0] = 5;
     array[1] = 2;
