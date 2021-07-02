@@ -34,6 +34,23 @@ void printList()
     }
 }
 
+void printMiddle()
+{
+    ListNode *slow_ptr = head;
+    ListNode *fast_ptr = head;
+
+    if(head == NULL){
+        printf("Linked list is empty\n");
+    }else{
+        while (fast_ptr != NULL && fast_ptr->next != NULL)
+        {
+            fast_ptr = fast_ptr->next->next;
+            slow_ptr = slow_ptr->next;
+        }
+        printf("The middle element is %d\n", slow_ptr->val);
+    }
+}
+
 void push_back(int x)
 {
     ListNode *new_node = creatNode(x);
@@ -148,7 +165,8 @@ int main()
     printf("(5) Delete\n");
     printf("(6) Clear\n");
     printf("(7) Print this link\n");
-    printf("(8) Quit\n");
+    printf("(8) Print middle node\n");
+    printf("(9) Quit\n");
 
     while (flag){
         printf("Enter your option: ");
@@ -182,7 +200,10 @@ int main()
             case 7: //Print
                 printList();
                 break;
-            case 8: //Exit
+            case 8: //Print middle node
+                printMiddle();
+                break;
+            case 9: //Exit
                 flag = 0;
                 break;
             default:
