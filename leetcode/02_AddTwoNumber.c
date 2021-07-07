@@ -112,7 +112,7 @@ int main()
 {
     ListNode *l1 = inputData1();
     ListNode *l2 = inputData2();
-    
+
     printList(l1);
     printList(l2);
     ListNode *sum = addTwoNumbers(l1, l2);
