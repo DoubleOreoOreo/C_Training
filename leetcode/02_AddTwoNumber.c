@@ -85,27 +85,35 @@ ListNode* inputData2()
 }
 
 ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
-    ListNode *sum = NULL;
+    struct ListNode *head    = NULL;
+    struct ListNode *current = NULL;
+    struct ListNode *add     = NULL;
     int carry = 0;
-    int add = 0;
-    int a = 0;
-    int b = 0;
+    int sum   = 0;
 
     while(l1 != NULL || l2 != NULL || carry != 0)
     {
-        a = l1 ? l1->val : 0;
-        b = l2 ? l2->val : 0;
+        sum = carry + (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
 
-        add = (a + b + carry) % 10;
-        sum = push_back(sum, add);
-        carry = (a + b + carry) / 10;
-        if (l1 != NULL)
+        carry = (sum >= 10) ? 1 : 0;
+        sum = (sum >= 10) ? sum-10 : sum;
+
+        if(head == NULL){
+            current = creatNode(sum);
+            head = current;
+        }else{
+            add = creatNode(sum);
+            current->next = add;
+            current = current->next;
+        }
+        
+        if(l1)
             l1 = l1->next;
-        if (l2 != NULL)
-            l2 = l2->next;        
+        if(l2)
+            l2 = l2->next;
     }
 
-    return sum;
+    return head;
 }
 
 int main()
