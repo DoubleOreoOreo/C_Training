@@ -132,6 +132,62 @@ void insert(int x, int y)
     }*/
 }
 
+void Sort()
+{
+    if(head == NULL)
+        printf("Empty!\n");
+    else{
+        ListNode *node=NULL, *temp = NULL;
+        int tempvar;//temp variable to store node data
+        node = head;
+        //temp = node;//temp node to hold node data and next link
+        while(node != NULL)
+        {
+            temp=node; 
+            while (temp->next !=NULL)//travel till the second last element 
+            {
+            if(temp->val > temp->next->val)// compare the data of the nodes 
+                {
+                tempvar = temp->val;
+                temp->val = temp->next->val;// swap the data
+                temp->next->val = tempvar;
+                }
+            temp = temp->next;    // move to the next element 
+            }
+            node = node->next;    // move to the next node
+        }
+    }
+}
+
+void pop()
+{
+    if(head==NULL)
+        printf("Empty");
+    else{
+        ListNode *current = head;
+
+        head = head->next;
+        free(current);
+    }
+}
+
+void pop_back()
+{
+    if(head==NULL)
+        printf("Empty");
+    else{
+        ListNode *current = head;
+        ListNode *pervious = NULL;
+
+        while(current->next != NULL){
+            pervious = current;
+            current = current->next;
+        }
+        pervious->next = NULL;
+        free(current);
+    }
+}
+
 void reverse()
 {
     if(head == NULL || head->next == NULL)
@@ -153,6 +209,47 @@ void reverse()
     }
 }
 
+void sorting_BubbleSort()
+{
+    if(head == NULL)
+        printf("Empty");
+    else{
+        ListNode *current = head;
+        ListNode *previous = head;
+        ListNode *temp = head;
+        int size = 0;
+        while (current != NULL){
+            size++;
+            current = current->next;
+        }
+        
+        for (int i = size; i>0; i--)
+        {
+            current = head;
+            previous = head;
+            for (int j = 0; j<i-1 && current->next; j++){
+                if(current->val > current->next->val){
+                    temp = current->next;
+                    current->next = temp->next;
+                    temp->next = current;
+
+                    if(current == head){
+                        head = temp;
+                        previous = temp;
+                    }else{
+                        previous->next = temp;
+                        previous = previous->next;
+                    }
+                }else{
+                    current = current->next;
+                    if(j!=0)
+                        previous = previous->next;
+                }
+            }
+        }
+    }
+}
+
 int main()
 {
     int option = 0;
@@ -162,11 +259,14 @@ int main()
     printf("(2) Push front\n");
     printf("(3) Insert x (Node: head -> x)\n");
     printf("(4) Reverse\n");
-    printf("(5) Delete\n");
-    printf("(6) Clear\n");
-    printf("(7) Print this link\n");
-    printf("(8) Print middle node\n");
-    printf("(9) Quit\n");
+    printf("(5) Sorting\n");
+    printf("(6) Delete\n");
+    printf("(7) Clear\n");
+    printf("(8) Print this link\n");
+    printf("(9) Print middle node\n");
+    printf("(10) Quit\n");
+    printf("(11) Pop\n");
+    printf("(12) Pop_back\n");
 
     while (flag){
         printf("Enter your option: ");
@@ -188,23 +288,31 @@ int main()
                 break;
             case 4: //Reverse
                 reverse();
+            case 5: //sorting
+                sorting_BubbleSort();
                 break;
-            case 5: //Delete
+            case 6: //Delete
                 printf("Enter node value: ");
                 scanf("%d", &val);
                 delete(val);
                 break;
-            case 6: //Clear
+            case 7: //Clear
                 clear();
                 break;
-            case 7: //Print
+            case 8: //Print
                 printList();
                 break;
-            case 8: //Print middle node
+            case 9: //Print middle node
                 printMiddle();
                 break;
-            case 9: //Exit
+            case 10: //Exit
                 flag = 0;
+                break;
+            case 11: //queue
+                pop();
+                break;
+            case 12: //stack
+                pop_back();
                 break;
             default:
                 break;
